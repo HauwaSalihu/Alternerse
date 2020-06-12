@@ -4,6 +4,7 @@
       <h2>
         Edit Board
         <b-link href="#/">(Board List)</b-link>
+        <b-link href="#/blog" @click.stop="blog(key)">(Add Board)</b-link>
       </h2>
       <b-jumbotron>
         <template slot="header">
@@ -50,6 +51,9 @@ export default {
         name: 'EditBoard',
         params: { id: id }
       })
+    },
+    blog (){
+      router.push({ name: 'blog', params: { id: this.$route.params.id }})
     },
     deleteboard (id) {
       firebase.firestore().collection('boards').doc(id).delete().then(() => {

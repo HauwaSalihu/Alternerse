@@ -63,6 +63,14 @@ export default {
   methods: {
     onSubmit (evt) {
       evt.preventDefault()
+        const blog = firebase.firestore().collection('boards').doc(this.$route.params.id);
+      blog.set(this.board).then(() => {
+        this.key = ''
+        this.board.title = ''
+        this.board.description = ''
+        this.board.author = ''
+        router.push({ name: 'blog', params: { id: this.$route.params.id }})
+      })
       const updateRef = firebase.firestore().collection('boards').doc(this.$route.params.id);
       updateRef.set(this.board).then(() => {
         this.key = ''
