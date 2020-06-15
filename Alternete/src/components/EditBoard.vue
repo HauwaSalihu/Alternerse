@@ -7,14 +7,14 @@
       </h2>
       <b-jumbotron>
         <b-form @submit="onSubmit">
-          <b-form-group id="titleGroup"
+          <b-form-group id="fieldsetHorizontal"
                     horizontal
                     :label-cols="4"
                     breakpoint="md"
                     label="Enter Title">
             <b-form-input id="title" v-model.trim="board.title"></b-form-input>
           </b-form-group>
-          <b-form-group id="descGroup"
+          <b-form-group id="fieldsetHorizontal"
                     horizontal
                     :label-cols="4"
                     breakpoint="md"
@@ -25,7 +25,7 @@
                          :rows="2"
                          :max-rows="6">{{board.description}}</b-form-textarea>
           </b-form-group>
-          <b-form-group id="authorGroup"
+          <b-form-group id="fieldsetHorizontal"
                     horizontal
                     :label-cols="4"
                     breakpoint="md"
@@ -38,10 +38,12 @@
     </b-col>
   </b-row>
 </template>
-
+ 
 <script>
+ 
 import firebase from '../Firebase'
 import router from '../router'
+ 
 export default {
   name: 'EditBoard',
   data () {
@@ -63,14 +65,6 @@ export default {
   methods: {
     onSubmit (evt) {
       evt.preventDefault()
-        const blog = firebase.firestore().collection('boards').doc(this.$route.params.id);
-      blog.set(this.board).then(() => {
-        this.key = ''
-        this.board.title = ''
-        this.board.description = ''
-        this.board.author = ''
-        router.push({ name: 'blog', params: { id: this.$route.params.id }})
-      })
       const updateRef = firebase.firestore().collection('boards').doc(this.$route.params.id);
       updateRef.set(this.board).then(() => {
         this.key = ''
@@ -86,7 +80,7 @@ export default {
   }
 }
 </script>
-
+ 
 <style>
   .jumbotron {
     padding: 2rem;

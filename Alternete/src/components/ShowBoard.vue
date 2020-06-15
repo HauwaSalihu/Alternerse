@@ -3,8 +3,7 @@
     <b-col cols="12">
       <h2>
         Edit Board
-        <b-link href="#/">(Board List)</b-link>
-        <b-link href="#/blog" @click.stop="blog(key)">(Add Board)</b-link>
+        <b-link href="#/blog">(Board List)</b-link>
       </h2>
       <b-jumbotron>
         <template slot="header">
@@ -22,10 +21,12 @@
     </b-col>
   </b-row>
 </template>
-
+ 
 <script>
+ 
 import firebase from '../Firebase'
 import router from '../router'
+ 
 export default {
   name: 'ShowBoard',
   data () {
@@ -52,9 +53,6 @@ export default {
         params: { id: id }
       })
     },
-    blog (){
-      router.push({ name: 'blog', params: { id: this.$route.params.id }})
-    },
     deleteboard (id) {
       firebase.firestore().collection('boards').doc(id).delete().then(() => {
         router.push({
@@ -67,7 +65,7 @@ export default {
   }
 }
 </script>
-
+ 
 <style>
   .jumbotron {
     padding: 2rem;
