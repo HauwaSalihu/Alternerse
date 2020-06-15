@@ -1,17 +1,22 @@
 <template>
-  <b-row>
-    <b-col cols="12">
-      <h2>
-        Board List
-        <b-link href="#/add-board">(Add Board)</b-link>
-      </h2>
-      <b-table striped hover :items="boards" :fields="fields">
-        <template v-slot:cell(actions)="data">
-          <b-button @click.stop="details(data.item)" variant="primary">Details</b-button>
-        </template>
-      </b-table>
-    </b-col>
-  </b-row>
+<div class="blog-component">
+  <b-card no-body class="overflow-hidden blog-card" v-for="board in boards" :key="board.key">
+    <b-row no-gutters>
+      <b-col md="5" class="blog-img">
+        <b-card-img></b-card-img>
+      </b-col>
+      <b-col md="7">
+        <b-card-body class="blog-text" :title="board.title">
+          <b-card-text>
+          Author: {{board.author}}<br>
+         {{board.description}}<br>
+          </b-card-text>
+           <b-button @click.stop="details(data.item)" variant="primary">Details</b-button>
+        </b-card-body>
+      </b-col>
+    </b-row>
+  </b-card>
+</div>
 </template>
 
 <script>
@@ -54,8 +59,18 @@ export default {
 </script>
 
 <style>
-  .table {
-    width: 96%;
-    margin: 0 auto;
-  }
+ .blog-component{
+   margin: 20px;
+ }
+ .blog-card{
+   margin: 20px;
+   max-width: 800px;
+   max-height: 200px;
+ }
+ .blog-text{
+   text-align: left;
+ }
+ .blog-img{
+
+ }
 </style>

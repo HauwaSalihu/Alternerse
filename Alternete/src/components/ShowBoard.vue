@@ -3,7 +3,7 @@
     <b-col cols="12">
       <h2>
         Edit Board
-        <b-link href="#/blog">(Board List)</b-link>
+        <b-link href="#/">()</b-link>
       </h2>
       <b-jumbotron>
         <template slot="header">
@@ -73,5 +73,6 @@ export default {
   .edit-btn {
     margin-right: 20px;
     width: 70px;
+    
   }
 </style>
